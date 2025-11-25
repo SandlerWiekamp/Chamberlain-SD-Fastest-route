@@ -39,7 +39,15 @@ def dijkstra_fastest_route(graph, start, end):
             time = edge_data[0]['travel_time']  # Assuming single edge between nodes
             heapq.heappush(queue, (travel_time + time, neighbor, path + [neighbor]))
 
+        return float("inf"), [] # If no path is found (aka error case)
+    
 if __name__ == "__main__":
     
     place = "Chamberlain, South Dakota, USA"
     graph = ox.graph_from_place(place, network_type='drive')
+
+    for u, v, data in graph.edges(data=True):
+        speed_kmh = data.get('speed_kmh', 35)  # Default speed if not provided
+        length_m = data['length']
+        travel_time = (length_m / 1000) / (speed_kmh / 60)  # in minutes
+        data['travel_time'] = travel_time

@@ -7,3 +7,7 @@ This is an example file with correct docstring examples
 | Date: 2025 November 25
 """
 
+import osmnx as ox
+import heapq
+import networkx as nx
+

@@ -38,3 +38,8 @@ def dijkstra_fastest_route(graph, start, end):
             edge_data = graph.get_edge_data(current_node, neighbor)
             time = edge_data[0]['travel_time']  # Assuming single edge between nodes
             heapq.heappush(queue, (travel_time + time, neighbor, path + [neighbor]))
+
+if __name__ == "__main__":
+    
+    place = "Chamberlain, South Dakota, USA"
+    graph = ox.graph_from_place(place, network_type='drive')

@@ -55,6 +55,9 @@ if __name__ == "__main__":
     start_point = (47.874, -99.3300) # example start coordinates in Chamberlain
     end_point = (43.7710, -99.3070)    # example end coordinates in Chamberlain
 
+    start_node = ox.nearest_nodes(graph, start_point[1], start_point[0])
+    end_node = ox.nearest_nodes(graph, end_point[1], end_point[0])
+    
     total_time, path = dijkstra_fastest_route(graph, start_point, end_point)
     
     print(f"Total Travel Time: {total_time} minutes")

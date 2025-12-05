@@ -39,8 +39,8 @@ def dijkstra_fastest_route(graph, start, end):
             time = edge_data[0]['travel_time']  # Assuming single edge between nodes
             heapq.heappush(queue, (travel_time + time, neighbor, path + [neighbor]))
 
-        return float("inf"), [] # If no path is found (aka error case)
-    
+    return float("inf"), []  # Return infinity if no path is found
+
 if __name__ == "__main__":
     
     place = "Chamberlain, South Dakota, USA"
@@ -51,14 +51,17 @@ if __name__ == "__main__":
         length_m = data['length']
         travel_time = (length_m / 1000) / (speed_kmh / 60)  # in minutes
         data['travel_time'] = travel_time
-    
-    start_point = (47.874, -99.3300) # example start coordinates in Chamberlain
-    end_point = (43.7710, -99.3070)    # example end coordinates in Chamberlain
+
+    start_point = (47.874, -99.3300)  # Example start coordinates in Chamberlain
+    end_point = (43.7710, -99.3070)    # example end example coordinates in Chamberlain
 
     start_node = ox.nearest_nodes(graph, start_point[1], start_point[0])
     end_node = ox.nearest_nodes(graph, end_point[1], end_point[0])
-    
-    total_time, path = dijkstra_fastest_route(graph, start_point, end_point)
-    
-    print(f"Total Travel Time: {total_time} minutes")
+
+    total_time, path = dijkstra_fastest_route(graph, start_node, end_node)
+
+    print(f"Total travel time: {total_time} minutes")
     print(f"Path: {path}")
+
+    plt = ox.plot_graph_route(graph, path, route_linewidth=6, node_size=0)
+    plt.show()

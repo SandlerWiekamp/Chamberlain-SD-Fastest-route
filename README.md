@@ -19,3 +19,8 @@ Functions:
             -start: The starting node
             -end: The destination node
             -return: A tuple containing the total travel time and the path as a list of nodes
+
+    Try to keep longitude between 43.8 and 43.77 
+        -Higher number means it goes up
+    Try to keep Latitude between -99.30 and -99.40
+     -Lower number means more left

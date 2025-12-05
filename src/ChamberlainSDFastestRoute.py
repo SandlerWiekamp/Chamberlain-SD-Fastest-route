@@ -52,7 +52,7 @@ if __name__ == "__main__":
         travel_time = (length_m / 1000) / (speed_kmh / 60)  # in minutes
         data['travel_time'] = travel_time
 
-    start_point = (47.874, -99.3300)  # Example start coordinates in Chamberlain
+    start_point = (43.794, -99.3090)  # Example start coordinates in Chamberlain
     end_point = (43.7710, -99.3070)    # example end example coordinates in Chamberlain
 
     start_node = ox.nearest_nodes(graph, start_point[1], start_point[0])

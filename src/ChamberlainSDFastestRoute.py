@@ -21,40 +21,51 @@ def dijkstra_fastest_route(graph, start, end):
     :return: A tuple containing the total travel time and the path as a list of nodes.
     """
     
+    """Priority queue to store (travel_time, current_node, path)"""
     queue = [(0, start, [start])]
     visited = set()
 
+    """Main loop"""
     while queue:
         travel_time, current_node, path = heapq.heappop(queue)
 
+        """Skip if already visited"""
         if current_node in visited:
             continue
         visited.add(current_node)
 
+        """Check if we reached the destination"""
         if current_node == end:
             return travel_time, path
 
+        """Explore neighbors"""
         for neighbor in graph.neighbors(current_node):
             edge_data = graph.get_edge_data(current_node, neighbor)
             time = edge_data[0]['travel_time']  # Assuming single edge between nodes
             heapq.heappush(queue, (travel_time + time, neighbor, path + [neighbor]))
         
-        
+    """If no path is found"""
     return float("inf"), []  # Return infinity if no path is found
 
 if __name__ == "__main__":
     
+    """Defines the place and downloads the street map data from OSM."""
     place = "Chamberlain, South Dakota, USA"
     graph = ox.graph_from_place(place, network_type='drive')
 
+    """Calculates travel time for each edge based on length and speed limit."""
     for u, v, data in graph.edges(data=True):
         speed_kmh = data.get('speed_kmh', 35)  # Default speed if not provided
         length_m = data['length']
         travel_time = (length_m / 1000) / (speed_kmh / 60)  # in minutes
         data['travel_time'] = travel_time
 
+    """Geocodes the start and end street addresses."""
     start_street_address = "224 West Lawler Ave, Chamberlain, SD"
     geocode_result = ox.geocode(start_street_address)
+
+    end_street_address = "1200 Main St, Chamberlain, SD" 
+    geocode_result_end = ox.geocode(end_street_address)
 
     """
     Example usage: 
@@ -74,9 +85,6 @@ if __name__ == "__main__":
         Path: [78780758, 78782733, 78779989, 78779987, 78777767, 78777322, 78781885, 78781880, 78781836, 78777762, 78764373, 78780844, 78782041, 78777880, 78782782]
 
     """
-
-    end_street_address = "1200 Main St, Chamberlain, SD" 
-    geocode_result_end = ox.geocode(end_street_address)
 
     start_node = ox.nearest_nodes(graph, geocode_result[1], geocode_result[0])
     end_node = ox.nearest_nodes(graph, geocode_result_end[1], geocode_result_end[0])

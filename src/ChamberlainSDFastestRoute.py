@@ -50,7 +50,7 @@ def dijkstra_fastest_route(graph, start, end):
 if __name__ == "__main__":
     
     """Defines the place and downloads the street map data from OSM."""
-    place = "Chamberlain, South Dakota, USA"
+    place = "Platte, South Dakota, USA"
     graph = ox.graph_from_place(place, network_type='drive')
 
     """Calculates travel time for each edge based on length and speed limit."""
@@ -61,10 +61,10 @@ if __name__ == "__main__":
         data['travel_time'] = travel_time
 
     """Geocodes the start and end street addresses."""
-    start_street_address = "224 West Lawler Ave, Chamberlain, SD"
+    start_street_address = "912 S Ohio Ave, Platte, SD"
     geocode_result = ox.geocode(start_street_address)
 
-    end_street_address = "1200 Main St, Chamberlain, SD" 
+    end_street_address = "35271 270th St, Platte, SD" 
     geocode_result_end = ox.geocode(end_street_address)
 
     """

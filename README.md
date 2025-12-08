@@ -54,4 +54,12 @@ Output:
     The Path taken
     A map of path taken
 
+    Example:
+        Example usage: 
+            912 S Ohio Ave, Platte, SD  
+            35271 270th St, Platte, SD
+        Expected output:
+            Total travel time: 3.4204882324378127 minutes
+            Path:[78935294, 78949911, 78942214, 78950712, 78952511, 78935494, 78935496, 78935503, 78944845, 12095769949, 78944852, 12095769952, 78946690, 78946688, 78947392, 78955765, 12095769944, 8366430695, 8366430704]
+
     

@@ -9,6 +9,7 @@ type: pip install osmnx networkx matplotlib
 imports needed:
 -osmnx as os
 -networkx as nx
+-heapq
 
 Overview:
 This project calculates the fastest travel-time route between two street addresses in Chamberlain, South Dakota, using:

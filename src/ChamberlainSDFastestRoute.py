@@ -53,10 +53,29 @@ if __name__ == "__main__":
         travel_time = (length_m / 1000) / (speed_kmh / 60)  # in minutes
         data['travel_time'] = travel_time
 
-    start_street_address = "123 Main St, Chamberlain, SD"
+    start_street_address = "224 West Lawler Ave, Chamberlain, SD"
     geocode_result = ox.geocode(start_street_address)
 
-    end_street_address = "224 West Lawler Ave, Chamberlain, SD"
+    """
+    Example usage: 
+        912 S Ohio Ave, Platte, SD  
+        35271 270th St, Platte, SD
+    Expected output:
+        Total travel time: 3.4204882324378127 minutes
+        Path:[78935294, 78949911, 78942214, 78950712, 78952511, 78935494, 78935496, 78935503, 78944845, 12095769949, 78944852, 12095769952, 78946690, 78946688, 78947392, 78955765, 12095769944, 8366430695, 8366430704]
+
+    or
+
+    Example usage:
+        224 West Lawler Ave, Chamberlain, SD
+        1200 Main St, Chamberlain, SD
+    Expected output:
+        Total travel time: 2.277611436079074 minutes
+        Path: [78780758, 78782733, 78779989, 78779987, 78777767, 78777322, 78781885, 78781880, 78781836, 78777762, 78764373, 78780844, 78782041, 78777880, 78782782]
+
+    """
+
+    end_street_address = "1200 Main St, Chamberlain, SD" 
     geocode_result_end = ox.geocode(end_street_address)
 
     start_node = ox.nearest_nodes(graph, geocode_result[1], geocode_result[0])
